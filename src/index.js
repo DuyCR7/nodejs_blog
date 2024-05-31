@@ -7,6 +7,11 @@ import { engine } from 'express-handlebars';
 const app = express();
 const port = 3000;
 
+app.use(express.urlencoded({
+    extended: true
+})); // middleware xử lý dữ liệu từ form
+app.use(express.json()); // middleware xử lý dữ liệu từ javascript
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,7 +39,8 @@ app.get('/search', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
-    res.render('search');
+    // console.log(req.body);
+    res.send('');
 });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
