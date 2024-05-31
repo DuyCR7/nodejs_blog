@@ -1,9 +1,15 @@
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express'; // require tên thư viện (đi vào nodemodules)
 import morgan from 'morgan';
 import { engine } from 'express-handlebars';
 
 const app = express();
 const port = 3000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // HTTP logger
 app.use(morgan('combined'));
