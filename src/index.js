@@ -1,8 +1,10 @@
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import express from 'express'; // require tên thư viện (đi vào nodemodules)
-import morgan from 'morgan';
-import { engine } from 'express-handlebars';
+const path = require('path');
+const { fileURLToPath } = require('url');
+const express = require('express'); // require tên thư viện (đi vào nodemodules)
+const morgan = require('morgan');
+const { engine } = require('express-handlebars');
+
+const route = require('./routes/index'); 
 
 const app = express();
 const port = 3000;
@@ -12,8 +14,6 @@ app.use(express.urlencoded({
 })); // middleware xử lý dữ liệu từ form
 app.use(express.json()); // middleware xử lý dữ liệu từ javascript
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // HTTP logger
@@ -26,21 +26,7 @@ app.engine('.hbs', engine(
 app.set('view engine', '.hbs');
 app.set('views', 'src/resources/views');
 
-app.get('/', (req, res) => { 
-    res.render('home');
-});
-
-app.get('/news', (req, res) => { 
-    res.render('news');
-});
-
-app.get('/search', (req, res) => {
-    res.render('search');
-});
-
-app.post('/search', (req, res) => {
-    // console.log(req.body);
-    res.send('');
-});
+// Routes init
+route(app);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
