@@ -1,7 +1,7 @@
-    const path = require('path');
+const path = require('path');
 const { fileURLToPath } = require('url');
 const express = require('express'); // require tên thư viện (đi vào nodemodules)
-    const morgan = require('morgan');
+const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 
 const route = require('./routes/index');
@@ -14,7 +14,7 @@ app.use(
         extended: true,
     }),
 ); // middleware xử lý dữ liệu từ form
-app.use(        express.json()); // middleware xử lý dữ liệu từ javascript
+app.use(express.json()); // middleware xử lý dữ liệu từ javascript
 
 app.use(express.static(path.join(__dirname, 'public')));
 
