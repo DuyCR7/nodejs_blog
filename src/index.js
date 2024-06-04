@@ -10,8 +10,8 @@ const app = express();
 const port = 3000;
 
 app.use(
-    express.urlencoded({
-        extended: true,
+        express.urlencoded({
+            extended: true,
     }),
 ); // middleware xử lý dữ liệu từ form
 app.use(express.json()); // middleware xử lý dữ liệu từ javascript
@@ -29,6 +29,6 @@ app.set('views', 'src/resources/views');
 // Routes init
 route(app);
 
-            app.listen(port, () =>
-                console.log(`Example app listening at http://localhost:${port}`),
+app.listen(port, () =>
+    console.log(`Example app listening at http://localhost:${port}`),
 );
