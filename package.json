@@ -23,7 +23,7 @@
   "homepage": "https://github.com/DuyCR7/nodejs_blog#readme",
   "description": "",
   "lint-staged": {
-    "src/**/*.{js,json,scss}": "prettier --write --single-quote --trailing-comma all --tab-width 4"
+    "src/**/*.{js,json,scss}": ["prettier --write --single-quote --trailing-comma all --tab-width 4", "git add"]
   },
   "husky": {
     "hooks": {
