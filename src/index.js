@@ -29,6 +29,6 @@ app.set('views', 'src/resources/views');
 // Routes init
 route(app);
 
-app.listen(port, () =>
-    console.log(`Example app listening at http://localhost:${port}`),
+            app.listen(port, () =>
+                console.log(`Example app listening at http://localhost:${port}`),
 );
