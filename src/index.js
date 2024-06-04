@@ -1,7 +1,7 @@
-                    const path = require('path');
+    const path = require('path');
 const { fileURLToPath } = require('url');
 const express = require('express'); // require tên thư viện (đi vào nodemodules)
-                const morgan = require('morgan');
+    const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 
 const route = require('./routes/index');
