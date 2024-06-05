@@ -13,7 +13,7 @@ class SiteController {
         // }
 
         // Promise
-        await Course.find({})
+        Course.find({})
             .then(courses => {
                 res.render('home', {
                     courses: multipleMongooseToObject(courses) // convert lại
