@@ -94,6 +94,7 @@
     var checkboxAll = $('#checkbox-all');
     var courseItemCheckbox = $('input[name="courseIds[]"]');
     var checkAllSubmitBtn = $('.check-all-submit-btn');
+    var actionSelect = document.querySelector('.checkbox-select-all-options');
         
     if (deleteCourseModal) {
         deleteCourseModal.addEventListener('show.bs.modal', event => {
@@ -124,9 +125,13 @@
       renderCheckAllSubmitBtn();
     });
 
-    // Check all submit button clicked
-    checkAllSubmitBtn.on('submit', function(e){
-      containerForm.submit();
+    checkAllSubmitBtn.on('click', function() {
+      if (!actionSelect.value) {
+        actionSelect.setAttribute('required', 'required');
+        actionSelect.reportValidity();
+      } else {
+        containerForm.submit();
+      }
     });
 
     // Re-render check all submit Button
