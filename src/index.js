@@ -18,7 +18,7 @@ app.use(
     express.urlencoded({
         extended: true,
     }),
-); // middleware xử lý dữ liệu từ form
+); // middleware xử lý dữ liệu từ form => mới có req.body
 app.use(express.json()); // middleware xử lý dữ liệu từ javascript
 
 // methodOverride
