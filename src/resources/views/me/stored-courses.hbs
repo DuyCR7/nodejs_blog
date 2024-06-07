@@ -19,15 +19,22 @@
 
     <button class="btn btn-sm btn-primary check-all-submit-btn disabled">Thực hiện</button>
   </div>
-
+  {{!-- {{ _sort.type }} --}}
   <table class="table mt-4">
     <thead>
       <tr>
         <th scope="col"></th>
         <th scope="col">#</th>
-        <th scope="col">Tên khóa học</th>
+        <th scope="col">
+          Tên khóa học
+          {{!-- 3 dấu ngoặc để trả về không phải html (XSS) --}}
+          {{{ sortable 'name' _sort }}}
+        </th>
         <th scope="col">Ảnh</th>
-        <th scope="col">Thời gian xóa</th>
+        <th scope="col">
+          Thời gian tạo
+          {{{ sortable 'createdAt' _sort }}}
+        </th>
         <th scope="col"></th>
       </tr>
     </thead>

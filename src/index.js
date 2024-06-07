@@ -4,6 +4,7 @@ const express = require('express'); // require tên thư viện (đi vào nodemo
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const methodOverride = require('method-override')
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
 
 const route = require('./routes/index');
 const db = require('./config/db/index')
@@ -24,6 +25,9 @@ app.use(express.json()); // middleware xử lý dữ liệu từ javascript
 // methodOverride
 app.use(methodOverride('_method'));
 
+// Custom middlewares
+app.use(SortMiddleware);
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // HTTP logger
@@ -33,7 +37,32 @@ app.use(morgan('combined'));
 app.engine('.hbs', engine({ 
     extname: '.hbs',
     helpers: {
+        // helper function index
         sum(a, b) { return a + b; },
+
+        // helper function sort
+        sortable: (field, sort) => {
+            const sortType = field === sort.column ? sort.type : 'default';
+
+            const icons = {
+                default: 'fa-solid fa-sort',
+                asc: 'fa-solid fa-sort-up',
+                desc: 'fa-solid fa-sort-down',
+            };
+            const types = {
+                default: 'desc',
+                asc: 'desc',
+                desc: 'asc',
+            }
+            
+
+            const icon = icons[sortType];
+            const type = types[sortType];
+            
+            return `<a href="?_sort&column=${field}&type=${type}">
+                        <i class="${icon}"></i>
+                    </a>`;
+        }
     }
 }));
 app.set('view engine', '.hbs');
