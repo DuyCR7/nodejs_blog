@@ -6,7 +6,9 @@ class MeController {
     // [GET] /me/stored/courses
     storedCourses(req, res, next) {
 
+        // sau khi đi qua middleware thì có được res.locals._sort
         // res.json(res.locals._sort);
+        // sau đó thì biến _sort sẽ lấy được ở trong views
         
         let courseQuery = Course.find({});
 
