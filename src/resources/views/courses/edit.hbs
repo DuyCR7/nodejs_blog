@@ -1,0 +1,14 @@
+<div class="mt-4">
+  <h2>Chỉnh sửa khóa học</h2>
+  <form method="post" action="/courses/{{ course._id }}?_method=PUT">
+    <div class="mb-3">
+      <label for="name" class="form-label">Tên khóa học</label>
+      <input type="text" class="form-control" value="{{ course.name }}" id="name" name="name" />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả</label>
+      <input type="text" class="form-control" value="{{ course.description }}" id="description" name="description" />
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu lại</button>
+  </form>
+</div>
