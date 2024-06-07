@@ -21,12 +21,11 @@ class CousreController {
     // [POST] /courses/store
     async store(req, res, next) {
         try {
-            const formData = req.body;
-            formData.image = 'https://files.fullstack.edu.vn/f8-prod/courses/6.png';
-            const course = new Course(formData);
+            req.body.image = 'https://files.fullstack.edu.vn/f8-prod/courses/6.png';
+            const course = new Course(req.body);
             await course.save();
             // res.status(201).json({ message: 'Course created successfully', course });
-            res.redirect('/');
+            res.redirect('/me/stored/courses');
         } catch (err) {
             console.error(err);
             res.status(500).json({ message: 'Server error, please try again later' });
@@ -52,7 +51,21 @@ class CousreController {
 
     // [DELETE] /courses/:id
     destroy(req, res, next) {
+        Course.delete({ _id: req.params.id})
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // [DELETE] /courses/:id/force
+    forceDestroy(req, res, next) {
         Course.deleteOne({ _id: req.params.id})
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // [PATCH] /courses/:id/restore
+    restore(req, res, next) {
+        Course.restore({ _id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
     }
