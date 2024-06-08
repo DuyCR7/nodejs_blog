@@ -6,7 +6,8 @@ const { engine } = require('express-handlebars');
 const methodOverride = require('method-override')
 const SortMiddleware = require('./app/middlewares/SortMiddleware');
 
-const route = require('./routes/index');
+// const routes = require('./routes/index');
+const routes = require('./app/api/routes/index');
 const db = require('./config/db/index')
 
 // Connect to DB
@@ -69,7 +70,7 @@ app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Routes init
-route(app);
+routes(app);
 
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`),
